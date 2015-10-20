@@ -107,12 +107,15 @@ namespace OneDriveRestAPI
             }
             if (statusCode == HttpStatusCode.Unauthorized ||
                 statusCode == HttpStatusCode.BadRequest ||
-                statusCode == HttpStatusCode.ServiceUnavailable)
+                statusCode == HttpStatusCode.ServiceUnavailable ||
+                statusCode == HttpStatusCode.Forbidden)
             {
                 var errorInfo = JsonConvert.DeserializeObject<ErrorInfo>(content);
                 if (errorInfo == null || errorInfo.Error == null)
                     throw new HttpServerException((int)statusCode, content) { Attempts = 1 };
 
+                if (errorInfo.Error.Code == "request_token_unauthorized")
+                    throw new TokenExpiredException();
                 if (errorInfo.Error.Code == "request_token_expired")
                     throw new TokenExpiredException();
                 if (errorInfo.Error.Code == "server_busy")
