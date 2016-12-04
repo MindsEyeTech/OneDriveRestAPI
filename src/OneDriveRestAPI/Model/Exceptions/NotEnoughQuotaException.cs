@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace OneDriveRestAPI.Model.Exceptions
 {
@@ -19,9 +18,9 @@ namespace OneDriveRestAPI.Model.Exceptions
         {
         }
 
-        protected NotEnoughQuotaException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
+        //protected NotEnoughQuotaException(SerializationInfo info, StreamingContext context)
+        //    : base(info, context)
+        //{
+        //}
     }
 }

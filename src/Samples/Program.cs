@@ -6,6 +6,7 @@ using OneDriveRestAPI;
 using OneDriveRestAPI.Model;
 using File = OneDriveRestAPI.Model.File;
 using System.Threading;
+using MeCloud.Shared.OneDrive;
 
 namespace Samples
 {
@@ -17,7 +18,9 @@ namespace Samples
             bool running = true;
             try
             {
-                Run().ContinueWith((task) => { running = false; });
+                Scope sc=Scope.SkyDrive;
+                var str = sc.GetDescription();
+                Run2().ContinueWith((task) => { running = false; });
                 while (running) {
                     Thread.Sleep(1);
                 }
@@ -29,19 +32,25 @@ namespace Samples
             Console.ReadKey();
         }
 
+        public static async Task Run2()
+        {
+            OneDriveCloud oneDriveCloud=new OneDriveCloud();
+            await oneDriveCloud.Run();
+        }
         public static async Task Run()
         {
-            var options = new Options
-                {
-                    ClientId = "...",
-                    ClientSecret = "...",
-                    CallbackUrl = "https://login.live.com/oauth20_desktop.srf",
+            Options options = new Options
+            {
+                ClientId = "0000000048152A56",
+                ClientSecret = "PhQ7Z62wSxw6OvwvCfDWG2zKHlbLUCSt",
+                CallbackUrl = "https://login.live.com/oauth20_desktop.srf",
 
-                    AutoRefreshTokens = true,
-                    PrettyJson = false,
-                    ReadRequestsPerSecond = 2,
-                    WriteRequestsPerSecond = 2
-                };
+                AutoRefreshTokens = true,
+                PrettyJson = false,
+                ReadRequestsPerSecond = 2,
+                WriteRequestsPerSecond = 2
+            };
+
 
             // Initialize a new Client (without an Access/Refresh tokens
             var client = new Client(options);

@@ -1,23 +1,30 @@
-using System.Collections.Specialized;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+
 
 namespace OneDriveRestAPI.Util
 {
     public static class NameValueCollectionExtensions
     {
-        public static string ToQueryString(this NameValueCollection nvc, bool includePrefix = true)
+        public static string ToQueryString(this Dictionary<string,string> nvc, bool includePrefix = true)
         {
-            var array = (from key in nvc.AllKeys
-                from value in nvc.GetValues(key)
-                select string.Format("{0}={1}", HttpUtility.UrlEncode(key), HttpUtility.UrlEncode(value)))
-                .ToArray();
+           
+            List<string> list = new List<string>();
+             foreach (KeyValuePair<string, string> keyValuePair in nvc)
+            {
+                var str = string.Format("{0}={1}", Uri.EscapeDataString(keyValuePair.Key),
+                    Uri.EscapeDataString(keyValuePair.Value));
+                  list.Add(str);
+            }
+
+            var array = list.ToArray<string>();
             return (includePrefix ? "?" : "") + string.Join("&", array);
         }
 
-        public static NameValueCollection ToNameValueCollection(this string queryString)
+        public static Dictionary<string, string> ToNameValueCollection(this string queryString)
         {
-            var nvc = new NameValueCollection();
+            var nvc = new Dictionary<string, string>();
 
             foreach (string x in queryString.Split('&'))
             {

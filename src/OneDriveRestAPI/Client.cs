@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+//using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using OneDriveRestAPI.Http;
@@ -7,6 +8,7 @@ using OneDriveRestAPI.Model;
 using OneDriveRestAPI.Model.Exceptions;
 using File = OneDriveRestAPI.Model.File;
 using FileInfo = OneDriveRestAPI.Model.FileInfo;
+using HttpClientFactory = OneDriveRestAPI.Http.HttpClientFactory;
 
 namespace OneDriveRestAPI
 {

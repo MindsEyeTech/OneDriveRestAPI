@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace OneDriveRestAPI.Model.Exceptions
 {
@@ -19,10 +18,10 @@ namespace OneDriveRestAPI.Model.Exceptions
         {
         }
 
-        protected RetryLaterException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
+        //protected RetryLaterException(SerializationInfo info, StreamingContext context)
+        //    : base(info, context)
+        //{
+        //}
 
         public int? RetryAfter { get; set; }
     }

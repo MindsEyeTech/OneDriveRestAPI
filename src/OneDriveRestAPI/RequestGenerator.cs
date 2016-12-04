@@ -5,6 +5,7 @@ using System.Net.Http;
 using OneDriveRestAPI.Model;
 using OneDriveRestAPI.Util;
 
+
 namespace OneDriveRestAPI
 {
     public class RequestGenerator : IRequestGenerator
@@ -24,7 +25,6 @@ namespace OneDriveRestAPI
                 Resource = OAuthResource.Replace("{verb}", AuthorizeVerb),
                 Method = HttpMethod.Get
             };
-
             request.AddParameter("client_id", clientId);
             request.AddParameter("scope", string.Join(" ", requestedScopes.OrderBy(s => s).Select(s => s.GetDescription())));
             request.AddParameter("response_type", "code");

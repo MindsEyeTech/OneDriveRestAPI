@@ -1,5 +1,3 @@
-using System.ComponentModel;
-
 namespace OneDriveRestAPI.Model
 {
     public enum Scope

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace OneDriveRestAPI.Model.Exceptions
 {
@@ -17,9 +16,9 @@ namespace OneDriveRestAPI.Model.Exceptions
         {
         }
 
-        protected TokenUnauthorizedException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
+        //protected TokenUnauthorizedException(SerializationInfo info, StreamingContext context)
+        //    : base(info, context)
+        //{
+        //}
     }
 }

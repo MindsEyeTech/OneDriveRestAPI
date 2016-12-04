@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace OneDriveRestAPI.Model.Exceptions
 {
@@ -17,8 +16,12 @@ namespace OneDriveRestAPI.Model.Exceptions
         {
         }
 
-        protected TokenExpiredException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        //protected TokenExpiredException(SerializationInfo info, StreamingContext context) : base(info, context)
+        //{
+        //}
+    }
+
+    public class SerializationInfo
+    {
     }
 }
